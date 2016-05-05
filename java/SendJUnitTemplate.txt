@@ -1,0 +1,36 @@
+package xquery.outbound.@@system.name.lowercase@@.@@service.name.lowercase@@;
+
+
+import de.o2.com.xquery.XqueryBaseTest;
+import de.o2.com.xquery.XqueryTest;
+
+import org.junit.Test;
+
+import static org.junit.Assert.fail;
+
+@XqueryTest(
+    xqFileName = "xquery/outbound/@@system.name.lowercase@@/@@service.name.lowercase@@/send@@process.name@@.xquery",
+    schemaFile = "@@service.name@@/Schema.xsd"
+)
+public class Send@@process.name@@Test extends XqueryBaseTest {
+    
+    @Test
+    public void testTransformSuccess() throws Exception {
+        String xmlFileName = "xquery/outbound/@@system.name.lowercase@@/@@service.name.lowercase@@/GetOrder_@@ordercomponent.name@@_@@process.name@@.xml";
+        String expectedFileName = "xquery/outbound/@@system.name.lowercase@@/@@service.name.lowercase@@/@@process.name@@.xml";
+        
+        expectMessageHeader("Operation", "@@service.operation@@");
+        expectMessageHeader("ServiceName", "@@service.name@@");
+        expectMessageHeader("OrderId", "26");
+        expectMessageHeader("OrderLineId", "123");
+        expectMessageHeader("LineSubscriptionId", "456");
+        expectMessageHeader("BusinessTransactionId","123");
+        
+        testAndValidateXquery(xmlFileName, expectedFileName);
+                
+        fail();
+        
+    }
+    
+}
+
